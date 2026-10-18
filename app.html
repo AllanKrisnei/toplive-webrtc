@@ -20,7 +20,7 @@
             background-color: #0b0b1a;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        logo {
+        .logo {
             font-size: 1.5em;
             font-weight: bold;
             color: #fff; 
@@ -36,7 +36,7 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .info id {
+        .info-id {
             font-size: 1.2em;
             margin-bottom: 25px;
             padding: 15px;
@@ -142,7 +142,7 @@
             }
         });
 
-        btnTransmitir.addEventListener('click', () => {
+        btnAssistir.addEventListener('click', () => {
             const idDoAmigo = inputId.value.trim();
             if (!idDoAmigo) {
                 alert("Por favor, cole o ID de quem está transmitindo.");
