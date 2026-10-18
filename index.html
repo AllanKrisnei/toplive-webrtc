@@ -2,78 +2,171 @@
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
-        <title>TOPlive - Trasmissão</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Top Live - Alta Performanceo</title>
 
         <style>
-            body{
-                font-family: 'Segoe UI', Tahoma, sans-serif;
-                background-color: #121212;
-                color: #ffffffff;
-                text-align: center;
-                padding: 20px;
-            }
-            .painel-controle{
-                background-color: #1e1e1e;
-                padding: 20px;
-                border-radius: 12px;
-                max-width: 500px;
-                margin: 0 auto;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 5); 
+
+            html{
+                scroll-behavior: smooth;
             }
 
-            button{
-                background-color: #007bff;
-                color: white;
-                border: none;
-                padding: 12px 20px;
-                font-size: 16px;
-                font-weight: bold;
-                border-radius: 6px;
-                cursor: pointer;
-                width: 100%;
-                margin-bottom: 10px;
+            body{
+                margin: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #0b0b1a;
+                color: #ffffff;
+            }
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 50px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                background-color: #0b0b1a;
+                position: sticky;
+                top: 0;
+            }
+
+            .menu-links a { 
+                margin: 0 15px;
+                color: #ccc;
+                text-decoration: none;
+                font-weight: 500;
                 transition: 0.3s;
             }
 
-            button:hover {
-                background-color: #0056b3;
+             .menu-links a:hover {
+                color: #d238ff;
+             }
+
+            .logo {
+                font-size: 1.5em;
+                font-weight: bold;
             }
 
-            imput{
-                width: 100%;
-                padding: 10px;
-                border-radius: 6px;
-                border: 1px solid #444;
-                background-color: #2a2a2a;
+            .hero {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 80px 50px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+           .hero-texto{
+                flex: 1;
+                padding-right: 50px;
+            }
+
+            .hero-texto h1{
+                font-size: 3.5em;
+                line-height: 1.1;
+                margin-bottom: 20px;
+            }
+            .hero-texto p {
+                font-size: 1.2em;
+                color: #a0a0b0;
+                margin-bottom: 40px;
+            }
+            .hero-texto p {
+                font-size: 1.2em;
+                color: #a0a0b0;
+                margin-bottom: 40px;
+            }
+            .btn-comecar {
+                background: linear-gradient(90deg, #5b42f3, #d238ff); /* Gradiente roxo e rosa */
                 color: white;
-                font-size: 16px;
-                margin-bottom: 15px;
+                text-decoration: none; 
+                padding: 15px 35px;
+                font-size: 1.2em;
+                font-weight: bold;
+                border-radius: 30px; 
+                display: inline-block;
+                transition: 0.3s;
+            }
+            .btn-comecar:hover {
+            opacity: 0.8;
+            transform: scale(1.05); 
+            }
+            .hero-imagem {
+                flex: 1;
+                background: #1e1e2f;
+                height: 350px;
+                border-radius: 15px;
+                border: 2px solid #333;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #555;
             }
 
-            video{
+            .hero-imagem img {
                 width: 100%;
-                max-width: 800px;
-                margin-top: 30px;
-                background-color: #000;
-                border: 2px solid #333;
-                border-radius: 8px;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 13px;
             }
+
+            .secao-conteudo {
+                padding: 100px 50px;
+                max-width: 1200px;
+                margin: 0 auto;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .secao-conteudo h2 {
+                font-size: 2.5em;
+                color: #d238ff;
+            }
+
             
         </style>
-    </head>
-    <body>
-        <h1>🎥 TOPlive</h1>
-        
-    <div class="painel-controle"> 
-        <p>O seu ID de conexão é: <b>Aguardando...</b></p>
+</head>
+<body>   
+     <nav class="navbar">
+        <div class="logo">((•)) Top Live</div>
+        <div class="menu-links">
+            <a href="#recursos">Recursos</a>
+            <a href="#como-funciona">Como Funciona</a>
+            <a href="#planos">Planos</a>
+        </div>
+     </nav>
+     
+     <div class="hero">
+        <div class="hero-texto">
+            <p style="font-size: 0.9em; color: #d238ff; font-weight: bold; margin-bottom: 10px">
+                📺 4K 60FPS &nbsp;&nbsp; ⏱️ Zero Delay &nbsp;&nbsp; 🚫 Sem Instalação
+            </p>
 
-        <h3>Para compartilhar sua Tela:</h3>
-        <button>1. Iniciar Transmissão</button>
-        
-        <h3>Para Assistir alguém:</h3>
-        <input type="text" placeholder="Cole o ID de quem está transmitindo">
-        <button style="background-color: #28a745"> 2. Conectar e Assistir</button>
-     </div>
-        <video autoplay playsinline controls></video>
-    </body>
+            <h1>TRANSMITA SUA TELA EM ALTA PERFORMANCE</h1>
+            <p>A primeira plataforma de screen sharing ultrarrápida, sem lag e direto do navegador.</p>
+            <a href="app.html" class="btn-comecar">Começar Grátis</a>
+            <a href="#como-funciona" style="color: white; margin-left: 20px; text-decoration: none; font-weight: bold;">Assistir Demo</a>
+        </div>
+
+        <div class="hero-imagem">
+            <img src="demo.jpeg" alt="Demonstração do Top Live">
+        </div>
+     </div>  
+     
+     <div id="recursos" class="secao-conteudo">
+        <h2>Nossos Recursos</h2>
+        <p>O sistema opera de forma 100% nativa no seu navegador de internet, eliminando completamente a necessidade de baixar, instalar ou configurar qualquer software no seu computador. Você apenas acessa o link e a plataforma já está pronta para uso. A tecnologia que torna isso possível é o WebRTC (Web Real-Time Communication). Trata-se de um protocolo avançado que já vem embutido em todos os navegadores modernos — como Google Chrome, Mozilla Firefox, Safari e Microsoft Edge. O WebRTC foi desenvolvido especificamente para permitir a transmissão de áudio, vídeo e dados complexos em tempo real, criando uma conexão direta e de baixíssima latência sem depender de plugins externos ou aplicativos de terceiros. Como o "motor" necessário para rodar o sistema já reside dentro do navegador que você usa todos os dias, a plataforma consegue entregar a performance de um programa instalado, mas com muito mais agilidade.</p>
+        <br><br><br><br><br> 
+    </div>
+
+    <div id="como-funciona" class="secao-conteudo">
+        <h2>Como Funciona</h2>
+        <p>1. Clique em Começar Grátis.<br>2. Gere seu ID.<br>3. Mande para o seu amigo e comece a transmitir.</p>
+        <br><br><br><br><br>
+    </div>
+
+    <div id="planos" class="secao-conteudo">
+        <h2>Nossos Planos</h2>
+        <p>Diferente de outras plataformas que bloqueiam recursos e exigem assinaturas mensais, o TOP live adota uma filosofia de transparência e comunidade. Acreditamos que a tecnologia de comunicação de qualidade deve ser livre. Por isso, oferecemos apenas um plano onde tudo está liberado.<br>O sistema é totalmente gratuito e Open Source (código aberto). Não há versões premium ocultas, limites de uso ou necessidade de cadastrar cartão de crédito. Você utiliza a potência máxima da plataforma desde o primeiro segundo.<br>Desenvolvido por Allan Krisnei<br>Criado e mantido com o objetivo de entregar uma solução de alta performance sem burocracia. O projeto foi arquitetado do zero para oferecer uma experiência ágil, segura e focada no usuário, consolidando tecnologia avançada em uma interface simples e acessível para todos.</p>
+        <br><br><br><br><br><br><br><br><br><br> 
+    </div>
+
+</body>
 </html>
