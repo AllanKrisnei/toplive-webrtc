@@ -3,7 +3,7 @@
 O **TOPlive** é uma aplicação web focada no compartilhamento rápido e prático de tela entre usuários diretamente pelo navegador, sem a necessidade de instalar nenhum software de terceiros. 
 
 Este projeto foi construído como parte do meu portfólio de desenvolvimento Front-end, consolidando conhecimentos práticos em manipulação de DOM e conexões ponto a ponto (P2P).
-[![Acessar Sistema](https://teamolive.netlify.app/)
+[![Acessar Sistema](https://img.shields.io/badge/ACESSAR%20SISTEMA-5FF2B6?style=for-the-badge&logoColor=black)](https://teamolive.netlify.app/)
 
 ## 🚀 Funcionalidades
 
