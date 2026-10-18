@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Top Live</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0b1a; 
+            color: #ffffff;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: #0b0b1a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fff; 
+            ext-decoration: none;
+        }
+        .painel-container{
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #1e1e2f; 
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .info id {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+        }
+        .id-destaque {
+            color: #d238ff; 
+            font-weight: bold; 
+            letter-spacing: 1px;
+        }
+        .controles {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        button {
+            background: linear-gradient(90deg, #5b42f3, #d238ff);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            opacity: 0.8; 
+            transform: scale(1.02);
+        }
+        .input-assistir {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #2a2a3a;
+            color: white;
+            font-size: 1.1em;
+            width: 250px;
+        }
+        video {
+            width: 100%;
+            background-color: #000;
+            border-radius: 10px;
+            border: 2px solid #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <a href="index.html" class="logo">((•)) Top Live</a>
+        <span style="color: #a0a0b0; font-weight: bold;">Painel de Transmissão</span>
+    </nav>
+    <div class="painel-container">
+        <div class="info-id">
+            Seu ID de Transmissão: <span id="meu-id" class="id-destaque">Gerando...</span>
+        </div>
+
+        <div class="controles">
+            <button id="btn-transmitir">🎥 Iniciar Transmissão<br></button>
+            <input type="text" id="input-id" class="input-assistir" placeholder="ID de quem vai assistir...">
+            <button id="btn-assistir" style="background: #178a31;">👁️ Conectar</button>
+        </div>
+
+        <video id="video-tela" autoplay playsinline controls></video>
+    </div>
+
+    <script src="https://unpkg.com/peerjs@1.5.1/dist/peerjs.min.js"></script>
+
+    <script>
+        const peer = new Peer();
+        let streamDaTela = null;
+
+        const textoMeuId = document.getElementById('meu-id');
+        const btnTransmitir = document.getElementById('btn-transmitir');
+        const videoTela = document.getElementById('video-tela');  
+        const btnAssistir = document.getElementById('btn-assistir');
+        const inputId = document.getElementById('input-id'); 
+        
+        peer.on('open', (idGerado) => {
+            textoMeuId.innerText = idGerado;
+        });
+        btnTransmitir.addEventListener('click', async () => {
+            try {
+                streamDaTela = await navigator.mediaDevices.getDisplayMedia({
+                    video: true,
+                    audio: true 
+                });
+                
+                videoTela.srcObject = streamDaTela;
+                videoTela.muted = true;
+                alert("Tela capturada! Agora mande seu ID para o seu amigo.");
+                
+            } catch (erro) {
+                console.error("Erro ao capturar tela:", erro);
+                alert("Precisa de permitir a partilha de ecrã para funcionar.");
+            }
+        });
+
+        btnTransmitir.addEventListener('click', () => {
+            const idDoAmigo = inputId.value.trim();
+            if (!idDoAmigo) {
+                alert("Por favor, cole o ID de quem está transmitindo.");
+                return;
+            }
+            const conexao = peer.connect(idDoAmigo);
+            conexao.on('open', () => {
+                console.log("Conectado! Aguardando o vídeo...");
+            });
+        }); 
+        
+        peer.on('connection', (conexao) => {
+            if (streamDaTela) {
+                conexao.on('open', () => {
+                    peer.call(conexao.peer, streamDaTela);
+                });
+            }else{
+                alert("Alguém tentou conectar, mas você ainda não iniciou a transmissão.");
+            }
+        });
+
+        peer.on('call', (chamada) => {
+            chamada.answer(); 
+            chamada.on('stream', (streamRecebida) => {
+                videoTela.srcObject = streamRecebida;
+                videoTela.muted = false; 
+            });
+        });
+    </script>
+
+</body>
+</html>
